@@ -9,7 +9,7 @@
 import UserNotifications
 import Foundation
 
-class Notification{
+class Notification { 
     
     func requestNotificationAuthorization(){
         
@@ -36,6 +36,7 @@ class Notification{
         
     }
     
+   
     
     
     

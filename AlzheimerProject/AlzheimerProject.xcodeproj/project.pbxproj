@@ -56,15 +56,47 @@
 		AC9EE90123071D01004FA292 /* AlzheimerProject */ = {
 			isa = PBXGroup;
 			children = (
+				AC9EE919230728F4004FA292 /* Controller */,
+				AC9EE918230728E9004FA292 /* View */,
+				AC9EE917230728E2004FA292 /* Model */,
+				AC9EE916230728C4004FA292 /* Classes */,
 				AC9EE90223071D01004FA292 /* AppDelegate.swift */,
-				AC9EE90423071D01004FA292 /* ViewController.swift */,
-				AC9EE90623071D01004FA292 /* Main.storyboard */,
 				AC9EE90923071D02004FA292 /* Assets.xcassets */,
-				AC9EE90B23071D02004FA292 /* LaunchScreen.storyboard */,
 				AC9EE90E23071D02004FA292 /* Info.plist */,
-				AC9EE91423072645004FA292 /* Notification.swift */,
 			);
 			path = AlzheimerProject;
+			sourceTree = "<group>";
+		};
+		AC9EE916230728C4004FA292 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				AC9EE91423072645004FA292 /* Notification.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		AC9EE917230728E2004FA292 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AC9EE918230728E9004FA292 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AC9EE90623071D01004FA292 /* Main.storyboard */,
+				AC9EE90B23071D02004FA292 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AC9EE919230728F4004FA292 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AC9EE90423071D01004FA292 /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
