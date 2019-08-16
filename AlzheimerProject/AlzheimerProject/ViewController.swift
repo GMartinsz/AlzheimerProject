@@ -7,14 +7,35 @@
 //
 
 import UIKit
+import UserNotifications
 
 class ViewController: UIViewController {
-
+    
+    let UserNotification = Notification()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        UserNotification.requestNotificationAuthorization()
+        
+        
+        
     }
 
+
+    
+    
+    
+    @IBAction func button(_ sender: UIButton) {
+        UserNotification.notification()
+    }
+    
+    
+    
+    
+    
+    
+    
 
 }
 
