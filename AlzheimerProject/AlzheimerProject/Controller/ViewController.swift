@@ -12,11 +12,11 @@ import CloudKit
 class ViewController: UIViewController {
     
     let UserNotification = Notification()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         UserNotification.requestNotificationAuthorization()
-    
+        
         
     }
 
