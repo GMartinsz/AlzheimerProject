@@ -1,4 +1,5 @@
 use_frameworks!
-target 'AlzheimerProject' do
-    pod 'FSCalendar'
+target 'AlzheimerProject' do  
+ 	pod 'CircleBar'
+	pod 'FSCalendar'
 end

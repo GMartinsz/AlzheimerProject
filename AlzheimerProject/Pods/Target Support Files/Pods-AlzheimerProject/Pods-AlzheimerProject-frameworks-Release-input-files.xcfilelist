@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-AlzheimerProject/Pods-AlzheimerProject-frameworks.sh
+${BUILT_PRODUCTS_DIR}/CircleBar/CircleBar.framework
 ${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -56,7 +56,6 @@
 				3FAA1ACF3D0FB7238CA892E8 /* Pods-AlzheimerProject.debug.xcconfig */,
 				2F7C12E70EE4623B2C3907C5 /* Pods-AlzheimerProject.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
