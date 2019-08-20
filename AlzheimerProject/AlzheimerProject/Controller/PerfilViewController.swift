@@ -12,6 +12,8 @@ class PerfilViewController: UIViewController {
     
     
     @IBOutlet weak var profilePhoto: UIImageView!
+    @IBOutlet weak var collectionScreens: UICollectionView!
+    
     
     var tarefas = [String]()
     
@@ -22,6 +24,8 @@ class PerfilViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setPhoto()
+        setScrollView()
+        setLayout()
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(PerfilViewController.moreInfo(_:)))
         gestureView.addGestureRecognizer(tap)
@@ -29,8 +33,28 @@ class PerfilViewController: UIViewController {
         
         tarefas.append("Sangue")
         tarefas.append("Remedio")
+        
+       
 
     }
+    
+    func setLayout(){
+        let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: view.frame.width, height: view.frame.height/2)
+        layout.scrollDirection = .horizontal
+        
+        
+        
+        collectionScreens.collectionViewLayout = layout
+    }
+    
+    func setScrollView(){
+        var invisibleScrolLView = UIScrollView(frame: self.view.bounds)
+        invisibleScrolLView.translatesAutoresizingMaskIntoConstraints = false
+        invisibleScrolLView.isPagingEnabled = true
+        invisibleScrolLView.showsVerticalScrollIndicator = false
+    }
+    
     
     
     func setPhoto(){
@@ -64,7 +88,31 @@ extension PerfilViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     
+}
+
+extension PerfilViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath)
+        
+        return cell
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
+class CollectionViewCell: UICollectionViewCell{
     
     
     
