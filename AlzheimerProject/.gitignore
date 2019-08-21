@@ -1,2 +1,5 @@
-xcuserdata/
-Pods/
+xcuserdata
+Pods
+.DS_STORE
+*.xcworkspace
+
