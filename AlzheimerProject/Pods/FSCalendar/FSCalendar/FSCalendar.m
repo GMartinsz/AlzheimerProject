@@ -31,7 +31,7 @@ static inline void FSCalendarAssertDateInBounds(NSDate *date, NSCalendar *calend
     }
     if (!valid) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"yyyy/MM/dd";
+        formatter.dateFormat = @"dd/MM/yyyy";
         [NSException raise:@"FSCalendar date out of bounds exception" format:@"Target date %@ beyond bounds [%@ - %@]", [formatter stringFromDate:date], [formatter stringFromDate:minimumDate], [formatter stringFromDate:maximumDate]];
     }
 }
@@ -151,7 +151,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
     
     _gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     _formatter = [[NSDateFormatter alloc] init];
-    _formatter.dateFormat = @"yyyy-MM-dd";
+    _formatter.dateFormat = @"dd-MM-yyyy";
     _locale = [NSLocale currentLocale];
     _timeZone = [NSTimeZone localTimeZone];
     _firstWeekday = 1;
@@ -161,8 +161,8 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
     _currentPage = [self.gregorian fs_firstDayOfMonth:_today];
     
     
-    _minimumDate = [self.formatter dateFromString:@"1970-01-01"];
-    _maximumDate = [self.formatter dateFromString:@"2099-12-31"];
+    _minimumDate = [self.formatter dateFromString:@"01-01-2019"];
+    _maximumDate = [self.formatter dateFromString:@"31-12-2020"];
     
     _headerHeight     = FSCalendarAutomaticDimension;
     _weekdayHeight    = FSCalendarAutomaticDimension;
