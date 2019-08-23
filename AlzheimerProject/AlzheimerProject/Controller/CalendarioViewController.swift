@@ -36,7 +36,10 @@ class CalendarioViewController: UIViewController {
             
             for day in days{
                 if selectedDay == day.day{
-                tarefas = [day.event[0].title]
+                    for i in 0..<day.event.count{
+                        tarefas = [day.event[i].title]
+                    }
+                    
                 }
             }
             reloadAll()
@@ -44,15 +47,15 @@ class CalendarioViewController: UIViewController {
         }
     }
     
-   
+    
     
     
     override func viewDidLoad() {
-
+        
         super.viewDidLoad()
         createCalendar()
     }
-
+    
     
     @IBAction func createTask(_ sender: UIButton) {
         if let date = calendar!.selectedDate{
@@ -63,15 +66,20 @@ class CalendarioViewController: UIViewController {
             
             let day = Days(dayParameter: date)
             let event = Events(titleParameter: "dar banho")
+            
             days.append(day)
+            
             day.event.append(event)
+            
             events.append(event)
+            
             tarefas.append(event.title)
             
             reloadAll()
             
         }
     }
+    
     
     func reloadAll(){
         calendar.reloadData()
@@ -88,14 +96,9 @@ class CalendarioViewController: UIViewController {
         
     }
     
- 
-    
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectedDay = date
     }
-    
-    
-    
     
     func createCalendar(){
         let calendar = FSCalendar(frame: CGRect(x: screenSize.width/8, y: screenSize.height/4, width: 320, height: 300))
@@ -113,6 +116,8 @@ class CalendarioViewController: UIViewController {
         self.calendar = calendar
     }
     
+    
+    
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         let dateString = self.dateFormatter.string(from: date)
         
@@ -124,8 +129,8 @@ class CalendarioViewController: UIViewController {
         return 0
         
     }
-
-
+    
+    
     
 }
 
@@ -140,8 +145,6 @@ extension CalendarioViewController : FSCalendarDelegate {
 
 extension CalendarioViewController : UITableViewDataSource , UITableViewDelegate{
     
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tarefas.count;
     }
@@ -153,10 +156,5 @@ extension CalendarioViewController : UITableViewDataSource , UITableViewDelegate
         
         return cell;
     }
-    
-    
-    
-    
-    
     
 }
