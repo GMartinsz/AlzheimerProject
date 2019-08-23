@@ -11,9 +11,7 @@ import FSCalendar
 
 let screenSize = UIScreen.main.bounds
 
-<<<<<<< HEAD
-    override func viewDidLoad(){
-=======
+
 class CalendarioViewController: UIViewController {
     
     fileprivate lazy var dateFormatter : DateFormatter =  {
@@ -50,13 +48,11 @@ class CalendarioViewController: UIViewController {
     
     
     override func viewDidLoad() {
->>>>>>> calendarSample
+
         super.viewDidLoad()
         createCalendar()
     }
-<<<<<<< HEAD
-  
-=======
+
     
     @IBAction func createTask(_ sender: UIButton) {
         if let date = calendar!.selectedDate{
@@ -128,7 +124,7 @@ class CalendarioViewController: UIViewController {
         return 0
         
     }
->>>>>>> calendarSample
+
 
     
 }
