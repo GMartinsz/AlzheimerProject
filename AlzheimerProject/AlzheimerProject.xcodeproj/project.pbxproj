@@ -15,6 +15,9 @@
 		AC9EE91523072645004FA292 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9EE91423072645004FA292 /* Notification.swift */; };
 		AC9EE922230C64BC004FA292 /* PerfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9EE921230C64BC004FA292 /* PerfilViewController.swift */; };
 		AC9EE924230C6901004FA292 /* CalendarioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9EE923230C6901004FA292 /* CalendarioViewController.swift */; };
+		AC9EE928230F0D8D004FA292 /* CellCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9EE927230F0D8D004FA292 /* CellCalendar.swift */; };
+		AC9EE92A230F175D004FA292 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9EE929230F175D004FA292 /* Events.swift */; };
+		AC9EE92C230F1A88004FA292 /* Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9EE92B230F1A88004FA292 /* Days.swift */; };
 		BF95BC60618A0AD0F91A87A7 /* Pods_AlzheimerProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F706B0D90EB5F893CFAF52 /* Pods_AlzheimerProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +35,9 @@
 		AC9EE91423072645004FA292 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		AC9EE921230C64BC004FA292 /* PerfilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilViewController.swift; sourceTree = "<group>"; };
 		AC9EE923230C6901004FA292 /* CalendarioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarioViewController.swift; sourceTree = "<group>"; };
+		AC9EE927230F0D8D004FA292 /* CellCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellCalendar.swift; sourceTree = "<group>"; };
+		AC9EE929230F175D004FA292 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		AC9EE92B230F1A88004FA292 /* Days.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Days.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,9 @@
 			isa = PBXGroup;
 			children = (
 				AC9EE91423072645004FA292 /* Notification.swift */,
+				AC9EE927230F0D8D004FA292 /* CellCalendar.swift */,
+				AC9EE929230F175D004FA292 /* Events.swift */,
+				AC9EE92B230F1A88004FA292 /* Days.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -248,7 +257,10 @@
 				AC9EE90523071D01004FA292 /* ViewController.swift in Sources */,
 				AC9EE90323071D01004FA292 /* AppDelegate.swift in Sources */,
 				AC9EE922230C64BC004FA292 /* PerfilViewController.swift in Sources */,
+				AC9EE92A230F175D004FA292 /* Events.swift in Sources */,
 				AC9EE91523072645004FA292 /* Notification.swift in Sources */,
+				AC9EE92C230F1A88004FA292 /* Days.swift in Sources */,
+				AC9EE928230F0D8D004FA292 /* CellCalendar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
