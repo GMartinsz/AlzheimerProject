@@ -22,6 +22,7 @@ class CalendarioViewController: UIViewController {
     
     fileprivate weak var calendar: FSCalendar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var textField: UITextField!
     
     var tarefas = ["levar pra passear", "escovar os dentes"]
     var dates = [String]()
@@ -36,8 +37,9 @@ class CalendarioViewController: UIViewController {
             
             for day in days{
                 if selectedDay == day.day{
+                    tarefas.removeAll()
                     for i in 0..<day.event.count{
-                        tarefas = [day.event[i].title]
+                        tarefas.append(day.event[i].title)
                     }
                     
                 }
@@ -56,27 +58,49 @@ class CalendarioViewController: UIViewController {
         createCalendar()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(false)
+        textField.text = ""
+    }
+    
+    var trigger = true
     
     @IBAction func createTask(_ sender: UIButton) {
+        
+        
         if let date = calendar!.selectedDate{
             let stringDate = toString(date)
             dates.append(stringDate)
             calendar(calendar, numberOfEventsFor: date)
             
+            for c in days{
+                if c.day == date{
+                    trigger = false
+                    print("trigger")
+                    let event = Events(titleParameter: textField.text ?? "dar banho")
+                    c.event.append(event)
+                    events.append(event)
+                    tarefas.append(event.title)
+                    
+                    
+                }
+            }
             
-            let day = Days(dayParameter: date)
-            let event = Events(titleParameter: "dar banho")
-            
-            days.append(day)
-            
-            day.event.append(event)
-            
-            events.append(event)
-            
-            tarefas.append(event.title)
-            
+            if trigger{
+                let day = Days(dayParameter: date)
+                let event = Events(titleParameter: textField.text ?? "dar banho")
+                days.append(day)
+                day.event.append(event)
+                
+                
+                events.append(event)
+                
+                tarefas.append(event.title)
+                
+                
+                trigger = true
+            }
             reloadAll()
-            
         }
     }
     
@@ -120,10 +144,15 @@ class CalendarioViewController: UIViewController {
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         let dateString = self.dateFormatter.string(from: date)
+        var aux = 1
         
+        for x in days{
+            if x.day == date{
+                aux = x.event.count
+            }
+        }
         if self.dates.contains(dateString) {
-            print(dateString)
-            return 1
+            return aux
         }
         
         return 0
