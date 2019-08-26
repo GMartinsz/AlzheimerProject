@@ -242,10 +242,10 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="118.52678571428571"/>
         </scene>
-        <!--View Controller-->
+        <!--Cloud View Controller-->
         <scene sceneID="GBU-rI-CNc">
             <objects>
-                <viewController id="ryx-Fo-Xa2" sceneMemberID="viewController">
+                <viewController id="ryx-Fo-Xa2" customClass="CloudViewController" customModule="AlzheimerProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Otl-aE-sZl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
