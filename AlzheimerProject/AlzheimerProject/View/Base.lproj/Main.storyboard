@@ -85,6 +85,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" id="z0B-jl-4Gu"/>
                     <connections>
+                        <outlet property="createTaskOutlet" destination="giB-xx-zgP" id="Y1p-cV-RO7"/>
                         <outlet property="horarioPopover" destination="hKS-Kb-ThA" id="tYr-3A-Rwi"/>
                         <outlet property="imagePopover" destination="bhH-hM-mM8" id="LyP-IM-xT4"/>
                         <outlet property="labelPopover" destination="ihI-5e-hMt" id="Jct-Is-8ax"/>
@@ -125,7 +126,7 @@
                     <viewLayoutGuide key="safeArea" id="DE2-dS-q9m"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="3102.898550724638" y="-64.285714285714278"/>
+            <point key="canvasLocation" x="1077" y="-704"/>
         </scene>
         <!--Task View Controller-->
         <scene sceneID="Yoc-oF-EO5">
@@ -207,7 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wAX-bp-gqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4312" y="-291"/>
+            <point key="canvasLocation" x="2286" y="-931"/>
         </scene>
         <!--Perfil do Paciente-->
         <scene sceneID="tne-QT-ifu">
@@ -319,7 +320,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1984.057971014493" y="-572.54464285714278"/>
+            <point key="canvasLocation" x="1578" y="1423"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Pii-lv-9XS">
@@ -335,7 +336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wks-PX-iKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2914.4927536231885" y="-902.00892857142856"/>
+            <point key="canvasLocation" x="2509" y="1094"/>
         </scene>
         <!--Circle Bar Controller-->
         <scene sceneID="vp5-ox-sj7">
@@ -361,18 +362,51 @@
         <!--View Controller-->
         <scene sceneID="GBU-rI-CNc">
             <objects>
-                <viewController id="ryx-Fo-Xa2" sceneMemberID="viewController">
+                <viewController id="ryx-Fo-Xa2" customClass="ViewController" customModule="AlzheimerProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Otl-aE-sZl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YKv-4x-SMG">
+                                <rect key="frame" x="53" y="293" width="307" height="438"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="m0o-X3-dpH">
+                                        <rect key="frame" x="0.0" y="28" width="307" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m0o-X3-dpH" id="GcL-Qp-tPD">
+                                            <rect key="frame" x="0.0" y="0.0" width="307" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ltd-Fz-i4W">
+                                <rect key="frame" x="239" y="251" width="121" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Todas"/>
+                                    <segment title="Minhas"/>
+                                </segments>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="segmentedAction:" destination="ryx-Fo-Xa2" eventType="valueChanged" id="6PW-GD-5ck"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" red="0.64146685599999997" green="0.92530101539999998" blue="0.9294165969" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="41m-A3-QbE"/>
                     </view>
                     <tabBarItem key="tabBarItem" id="g9E-qM-3hP"/>
+                    <connections>
+                        <outlet property="feedView" destination="YKv-4x-SMG" id="r63-vY-GlE"/>
+                        <outlet property="segmented" destination="Ltd-Fz-i4W" id="ZYg-lf-PJd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z6L-tN-Msa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1188" y="549"/>
+            <point key="canvasLocation" x="2157.971014492754" y="279.91071428571428"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QBX-kV-Ase">
@@ -391,7 +425,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQ2-gG-yiW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1073.913043478261" y="-572.54464285714278"/>
+            <point key="canvasLocation" x="668" y="1423"/>
         </scene>
     </scenes>
     <resources>

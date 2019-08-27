@@ -70,8 +70,13 @@ class CalendarioViewController: UIViewController, TaskViewControllerDelegate {
     
     var selectedDay : Date? {
         didSet{
-            titulos.removeAll()
-            horarios.removeAll()
+            if let today = calendar.today, selectedDay! < today {
+                createTaskOutlet.isHidden = true
+            }
+            else{
+                createTaskOutlet.isHidden = false
+                titulos.removeAll()
+                horarios.removeAll()
             for day in days{
                 if selectedDay == day.day{
                     titulos.removeAll()
@@ -86,6 +91,7 @@ class CalendarioViewController: UIViewController, TaskViewControllerDelegate {
                 }
             }
             reloadAll()
+            }
         }
     }
     
@@ -107,8 +113,6 @@ class CalendarioViewController: UIViewController, TaskViewControllerDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(false)
         popover.removeFromSuperview()
-        print(auxTime)
-        
     }
     
     
@@ -118,8 +122,11 @@ class CalendarioViewController: UIViewController, TaskViewControllerDelegate {
         marcarTask()
     }
     
+    @IBOutlet weak var createTaskOutlet: UIButton!
+    
     func createEventDay(){
         
+       
         if let date = calendar!.selectedDate{
             let stringDate = toString(date)
             dates.append(stringDate)
@@ -226,6 +233,7 @@ extension CalendarioViewController{
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectedDay = date
+        
     }
     
     
