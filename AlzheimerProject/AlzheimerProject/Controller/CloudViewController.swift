@@ -10,21 +10,23 @@ import UIKit
 
 class CloudViewController: ViewController {
 
+    @IBOutlet weak var labelSala: UILabel!
+    @IBOutlet weak var labelUsuario: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func criarSala(_ sender: Any) {
+        
+        let user = Cloud.geraAleatorio()
+        
+        let userList: [Int64] = [user]
+        Cloud.saveSala(idSala: Cloud.geraAleatorio(), idUsuario: userList, idCalendario: Cloud.geraAleatorio(), idPerfil: Cloud.geraAleatorio(), idHost: user)
+        
     }
-    */
-
+    
 }
