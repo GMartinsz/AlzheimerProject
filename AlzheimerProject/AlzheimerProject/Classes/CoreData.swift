@@ -24,6 +24,7 @@ class CoreDataBase {
     //Função responsável por criar a sala!
     static func createSala(){
         
+        let x = 1
     }
     
     
