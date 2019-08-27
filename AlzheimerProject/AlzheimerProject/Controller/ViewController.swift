@@ -12,12 +12,12 @@ import CloudKit
 class ViewController: UIViewController {
     
     let UserNotification = Notification()
+    var userID = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         UserNotification.requestNotificationAuthorization()
-        
-        
+        recuperarId()
     }
 
 
@@ -47,11 +47,8 @@ class ViewController: UIViewController {
             
             //Chamada da funçao para recuperar o ID
             iCloudUserIDAsync { (recordID: CKRecord.ID?, error: NSError?) in
-                if let userID = recordID?.recordName {
-                    print("iCloudID \(userID)")
-                } else {
-                    print("Fetched iCloudID was nil")
-                }
+                self.userID = recordID?.recordName ?? "Fetched iCloudID was nil"
+                print("UserID = \(self.userID)")
             }
             
         } else {
