@@ -15,8 +15,10 @@ let publicDataBase = cloudContainer.publicCloudDatabase
 class Cloud {
     
     private init(){
-    
     }
+    
+
+    
     
     static var cloud = Cloud()
     
