@@ -11,7 +11,11 @@ import UIKit
 
 class CellCalendar :  UITableViewCell {
 
+    @IBOutlet weak var imagem: UIImageView!
     @IBOutlet weak var titulo: UILabel!
+    @IBOutlet weak var horario: UILabel!
+    @IBOutlet weak var descricao: UITextView!
+    
     
     
     

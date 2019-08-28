@@ -10,9 +10,15 @@ import Foundation
 
 class Events {
     var title = "title of event"
+    var time = "time of event"
+    var desc = "description of event"
+    var categ = "category of event"
     
-    init(titleParameter: String) {
+    init(titleParameter: String,timeParameter: String,descParameter: String,categParameter: String) {
         self.title = titleParameter
+        self.time = timeParameter
+        self.desc = descParameter
+        self.categ = categParameter
     }
     
     

@@ -12,6 +12,45 @@ import CloudKit
 class ViewController: UIViewController {
     
     let UserNotification = Notification()
+<<<<<<< HEAD
+    
+    @IBOutlet weak var feedView: UITableView!
+    @IBOutlet weak var segmented: UISegmentedControl!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        UserNotification.requestNotificationAuthorization()
+        
+        
+        
+        
+    }
+
+    
+    
+    
+    
+    
+    @IBAction func segmentedAction(_ sender: UISegmentedControl) {
+        switch (segmented.selectedSegmentIndex){
+        case 0:
+            print("first")
+        case 1:
+            print("second")
+        default:
+            print("default")
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+=======
     var userID = ""
 
     override func viewDidLoad() {
@@ -21,6 +60,7 @@ class ViewController: UIViewController {
     }
 
 
+>>>>>>> Cloud
     @IBAction func button(_ sender: UIButton) {
         UserNotification.notification()
     }

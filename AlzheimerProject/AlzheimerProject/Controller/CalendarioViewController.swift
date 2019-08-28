@@ -12,7 +12,14 @@ import FSCalendar
 let screenSize = UIScreen.main.bounds
 
 
-class CalendarioViewController: UIViewController {
+class CalendarioViewController: UIViewController, TaskViewControllerDelegate {
+    
+    
+    @IBOutlet var popover: UIView!
+    @IBOutlet weak var imagePopover: UIImageView!
+    @IBOutlet weak var labelPopover: UILabel!
+    @IBOutlet weak var horarioPopover: UILabel!
+    
     
     fileprivate lazy var dateFormatter : DateFormatter =  {
         let formatter = DateFormatter()
@@ -22,91 +29,159 @@ class CalendarioViewController: UIViewController {
     
     fileprivate weak var calendar: FSCalendar!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var textField: UITextField!
     
-    var tarefas = ["levar pra passear", "escovar os dentes"]
+    
+    var titulos = [""]
+    var horarios = [""]
+    var descricao = [""]
+    var categorias = [""]
+    
+    
     var dates = [String]()
+    
     var days = [Days]()
     var events = [Events]()
     
+    var canPass = true
+    
+    var auxText : String = "" {
+        didSet{
+            reloadAll()
+        }
+    }
+    
+    var auxTime: String = ""{
+        didSet{
+            reloadAll()
+        }
+    }
+    
+    var auxCateg: String = ""{
+        didSet{
+            reloadAll()
+        }
+    }
+    
+    var auxDesc: String = ""{
+        didSet{
+            reloadAll()
+        }
+    }
     
     var selectedDay : Date? {
         didSet{
-            
-            tarefas.removeAll()
-            
+            if let today = calendar.today, selectedDay! < today {
+                createTaskOutlet.isHidden = true
+            }
+            else{
+                createTaskOutlet.isHidden = false
+                titulos.removeAll()
+                horarios.removeAll()
             for day in days{
                 if selectedDay == day.day{
-                    tarefas.removeAll()
+                    titulos.removeAll()
+                    horarios.removeAll()
                     for i in 0..<day.event.count{
-                        tarefas.append(day.event[i].title)
+                        titulos.append(day.event[i].title)
+                        descricao.append(day.event[i].desc)
+                        horarios.append(day.event[i].time)
+                        categorias.append(day.event[i].categ)
+                        
                     }
-                    
                 }
             }
             reloadAll()
-            
+            }
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        createCalendar()
+        reloadAll()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueTask"{
+            if let vc = segue.destination as? TaskViewController{
+                vc.delegate = self
+            }
         }
     }
     
     
-    
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        createCalendar()
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(false)
-        textField.text = ""
+        popover.removeFromSuperview()
     }
     
-    var trigger = true
+    
+    
     
     @IBAction func createTask(_ sender: UIButton) {
+        marcarTask()
+    }
+    
+    @IBOutlet weak var createTaskOutlet: UIButton!
+    
+    func createEventDay(){
         
-        
+       
         if let date = calendar!.selectedDate{
             let stringDate = toString(date)
             dates.append(stringDate)
             calendar(calendar, numberOfEventsFor: date)
             
-            for c in days{
-                if c.day == date{
-                    trigger = false
-                    print("trigger")
-                    let event = Events(titleParameter: textField.text ?? "dar banho")
-                    c.event.append(event)
+            for dia in days{
+                if dia.day == date{
+                    canPass = false
+                    let event = Events(titleParameter: auxText,timeParameter: auxTime,descParameter: auxDesc ,categParameter: auxCateg)
+                    dia.event.append(event)
                     events.append(event)
-                    tarefas.append(event.title)
+                    titulos.append(event.title)
+                    descricao.append(event.desc)
+                    horarios.append(event.time)
+                    categorias.append(event.categ)
+                    
+                    print(event.time)
                     
                     
                 }
             }
             
-            if trigger{
+            
+            if canPass {
                 let day = Days(dayParameter: date)
-                let event = Events(titleParameter: textField.text ?? "dar banho")
+                  let event = Events(titleParameter: auxText,timeParameter: auxTime,descParameter: auxDesc ,categParameter: auxCateg)
                 days.append(day)
                 day.event.append(event)
                 
                 
                 events.append(event)
                 
-                tarefas.append(event.title)
+                titulos.append(event.title)
+                horarios.append(event.time)
+                descricao.append(event.desc)
                 
                 
-                trigger = true
+                canPass = true
             }
             reloadAll()
         }
     }
     
     
-    func reloadAll(){
+    func marcarTask(){
+        performSegue(withIdentifier: "segueTask", sender: self)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         calendar.reloadData()
+    }
+    
+    func reloadAll(){
+        
         tableView.reloadData()
     }
     
@@ -115,14 +190,30 @@ class CalendarioViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        
         return dateFormatter.string(from: date)
-        
     }
     
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        selectedDay = date
+    func sendMesage(_ controller: TaskViewController, text: String,time: String,desc: String) {
+        auxText = text
+        auxTime = time
+        auxDesc = desc
+        createEventDay()
     }
+    
+    
+}
+
+extension CalendarioViewController : FSCalendarDataSource{
+    
+}
+
+extension CalendarioViewController : FSCalendarDelegate {
+    
+    
+}
+
+extension CalendarioViewController{
+    
     
     func createCalendar(){
         let calendar = FSCalendar(frame: CGRect(x: screenSize.width/8, y: screenSize.height/4, width: 320, height: 300))
@@ -140,6 +231,10 @@ class CalendarioViewController: UIViewController {
         self.calendar = calendar
     }
     
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        selectedDay = date
+        
+    }
     
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
@@ -151,6 +246,7 @@ class CalendarioViewController: UIViewController {
                 aux = x.event.count
             }
         }
+        
         if self.dates.contains(dateString) {
             return aux
         }
@@ -160,30 +256,36 @@ class CalendarioViewController: UIViewController {
     }
     
     
-    
-}
-
-extension CalendarioViewController : FSCalendarDataSource{
-    
-}
-
-extension CalendarioViewController : FSCalendarDelegate {
-    
-    
 }
 
 extension CalendarioViewController : UITableViewDataSource , UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tarefas.count;
+        return titulos.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellCalendar", for: indexPath) as! CellCalendar
         
-        cell.titulo.text = tarefas[indexPath.row]
+        cell.titulo.text = titulos[indexPath.row]
+        cell.horario.text = horarios[indexPath.row]
+        cell.descricao.text = descricao[indexPath.row]
         
         return cell;
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 72
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        popover.center = view.center
+        labelPopover.text = auxText
+        horarioPopover.text = auxTime
+        view.addSubview(popover)
+    }
+    
+    
     
 }
